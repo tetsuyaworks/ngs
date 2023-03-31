@@ -1,0 +1,12 @@
+## Build Image
+docker build -t ngs .
+
+## Run Container 
+docker run -it --name ngs1 -h ngs1 -v $HOME:/home/work -v /mnt/ab_srv:/mnt/ab_srv:ro ngs
+
+## UID and GID
+docker run -it --name ngs1 -h ngs1 -v $HOME:/home/work -v /mnt/ab_srv:/mnt/ab_srv:ro -e LOCAL_UID=1001 -e LOCAL_GID=1001 ngs
+
+## Jupyter Notebook (in ngs1 container)
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token='' --notebook-dir=/home/work
+
